@@ -37,7 +37,7 @@ public class NBTBoolean extends NBTBase {
     @Override
     public void writeTagContents(DataOutput output) throws IOException {
 	output.writeUTF(getKey());
-	if (this.tagValue!=null) {
+	if (this.tagValue != null) {
 	    output.writeByte(0);
 	    output.writeBoolean(this.tagValue);
 	} else {
@@ -46,8 +46,8 @@ public class NBTBoolean extends NBTBase {
     }
 
     @Override
-    public byte getTagType() {
-	return NBTBase.BOOLEAN_TAG;
+    public NBTTagType getTagType() {
+	return NBTTagType.BOOLEAN_TAG;
     }
 
     @Override

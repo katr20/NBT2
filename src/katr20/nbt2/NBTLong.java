@@ -4,14 +4,14 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTString extends NBTBase {
-    private String tagValue;
+public class NBTLong extends NBTBase {
+    private Long tagValue;
 
-    public NBTString(String key) {
+    public NBTLong(String key) {
 	super(key);
     }
 
-    public NBTString(String key, String value) {
+    public NBTLong(String key, Long value) {
 	super(key);
 	this.tagValue = value;
     }
@@ -20,17 +20,17 @@ public class NBTString extends NBTBase {
 	String key = input.readUTF();
 	byte isNull = input.readByte();
 	if (isNull == 0) {
-	    return new NBTString(key, input.readUTF());
+	    return new NBTLong(key, input.readLong());
 	}
 	return new NBTString(key, null);
     }
 
-    public void setValue(String str) {
-	this.tagValue = str;
+    public void setValue(Long l) {
+	this.tagValue = l;
     }
 
     @Override
-    public String getValue() {
+    public Long getValue() {
 	return this.tagValue;
     }
 
@@ -39,7 +39,7 @@ public class NBTString extends NBTBase {
 	output.writeUTF(getKey());
 	if (this.tagValue != null) {
 	    output.writeByte(0);
-	    output.writeUTF(this.tagValue);
+	    output.writeLong(this.tagValue);
 	} else {
 	    output.writeByte(1);
 	}
@@ -47,12 +47,12 @@ public class NBTString extends NBTBase {
 
     @Override
     public NBTTagType getTagType() {
-	return NBTTagType.STRING_TAG;
+	return NBTTagType.LONG_TAG;
     }
 
     @Override
     public NBTBase cloneTag() {
-	return new NBTString(getKey(), this.tagValue);
+	return new NBTLong(getKey(), this.tagValue);
     }
 
 }

@@ -22,7 +22,7 @@ public class NBTStringList extends NBTBase {
 	if (isNull == 0) {
 	    int listSize = input.readInt();
 	    String[] values = new String[listSize];
-	    for (int i = 0; i < listSize; i ++) {
+	    for (int i = 0; i < listSize; i++) {
 		values[i] = input.readUTF();
 	    }
 	    return new NBTStringList(key, values);
@@ -42,10 +42,10 @@ public class NBTStringList extends NBTBase {
     @Override
     public void writeTagContents(DataOutput output) throws IOException {
 	output.writeUTF(getKey());
-	if (this.tagValue!=null) {
+	if (this.tagValue != null) {
 	    output.writeByte(0);
 	    output.writeInt(this.tagValue.length);
-	    for(String str : this.tagValue) {
+	    for (String str : this.tagValue) {
 		output.writeUTF(str);
 	    }
 	} else {
@@ -54,8 +54,8 @@ public class NBTStringList extends NBTBase {
     }
 
     @Override
-    public byte getTagType() {
-	return NBTBase.STRING_LIST_TAG;
+    public NBTTagType getTagType() {
+	return NBTTagType.STRING_LIST_TAG;
     }
 
     @Override

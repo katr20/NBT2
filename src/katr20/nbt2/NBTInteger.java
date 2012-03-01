@@ -37,7 +37,7 @@ public class NBTInteger extends NBTBase {
     @Override
     public void writeTagContents(DataOutput output) throws IOException {
 	output.writeUTF(getKey());
-	if (this.tagValue!=null) {
+	if (this.tagValue != null) {
 	    output.writeByte(0);
 	    output.writeInt(this.tagValue);
 	} else {
@@ -46,8 +46,8 @@ public class NBTInteger extends NBTBase {
     }
 
     @Override
-    public byte getTagType() {
-	return NBTBase.INTEGER_TAG;
+    public NBTTagType getTagType() {
+	return NBTTagType.INTEGER_TAG;
     }
 
     @Override
