@@ -29,6 +29,7 @@ public class NBTBoolean extends NBTBase {
 	this.tagValue = b;
     }
 
+    @Override
     public Boolean getValue() {
 	return this.tagValue;
     }

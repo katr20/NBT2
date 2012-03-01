@@ -34,6 +34,7 @@ public class NBTStringList extends NBTBase {
 	this.tagValue = str;
     }
 
+    @Override
     public String[] getValue() {
 	return this.tagValue;
     }

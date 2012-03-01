@@ -2,6 +2,7 @@ package katr20.nbt2;
 
 import java.io.DataInput;
 import java.io.DataOutput;
+import java.io.EOFException;
 import java.io.IOException;
 
 public abstract class NBTBase {
@@ -9,7 +10,6 @@ public abstract class NBTBase {
     public static byte INTEGER_TAG = 1;
     public static byte BOOLEAN_TAG = 2;
     public static byte STRING_LIST_TAG = 3;
-
     private String key;
 
     public NBTBase(String key) {
@@ -22,7 +22,13 @@ public abstract class NBTBase {
     }
 
     public static NBTBase readTag(DataInput input) throws IOException {
-	byte b = input.readByte();
+	byte b;
+	try {
+	    b = input.readByte();
+	} catch (EOFException e) {
+	    return null;
+	}
+
 	if (b == NBTBase.STRING_TAG) {
 	    return NBTString.readTag(input);
 	}
@@ -49,4 +55,6 @@ public abstract class NBTBase {
     public abstract void writeTagContents(DataOutput output) throws IOException;
     public abstract byte getTagType();
     public abstract NBTBase cloneTag();
+
+    public abstract Object getValue();
 }

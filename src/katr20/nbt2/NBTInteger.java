@@ -29,6 +29,7 @@ public class NBTInteger extends NBTBase {
 	this.tagValue = i;
     }
 
+    @Override
     public Integer getValue() {
 	return this.tagValue;
     }
